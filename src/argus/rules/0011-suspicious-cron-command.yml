@@ -1,0 +1,27 @@
+id: ARGUS-0011
+title: Suspicious command in a scheduled job
+description: >
+  A cron job executes a downloader, an encoded payload, an inline interpreter
+  or a raw socket command. These patterns are uncommon in legitimate cron
+  entries and often indicate payload retrieval or beaconing.
+severity: medium
+logsource:
+  product: linux
+  service: cron
+detection:
+  selection:
+    action:
+      - cron_command
+      - cron_persistence
+    command|re: '(?i)(?:\bcurl\b|\bwget\b|/dev/tcp/|base64\s+-d|\bpython[0-9.]*\s+-c\b|\bnc\b\s|\bncat\b\s)'
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053
+  - attack.t1053.003
+falsepositives:
+  - Legitimate jobs that fetch release artifacts with curl or wget.
+  - Monitoring or backup scripts that invoke Python inline.
+  - Package-managed cron entries that use short inline shell logic.

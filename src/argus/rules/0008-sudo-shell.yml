@@ -1,0 +1,26 @@
+id: ARGUS-0008
+title: Sudo used to spawn a shell
+description: >
+  A sudo command starts an interactive or command-bearing shell. This is a
+  common way to turn a narrow sudo permission into unrestricted root command
+  execution. Reverse shell payloads are handled by a separate rule.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: sudo_shell
+  filter:
+    command|re: '(?:/dev/tcp/|\bnc\b[^;&|]*-e|socat[^;&|]*exec|\b(?:bash|sh|zsh)\s+-i)'
+  condition: selection and not filter
+group_by: [user]
+tags:
+  - attack.privilege_escalation
+  - attack.defense_evasion
+  - attack.t1548
+  - attack.t1548.003
+falsepositives:
+  - Administrators using sudo -i or sudo bash for approved interactive work.
+  - Automation that wraps a command in sudo sh -c rather than invoking a binary.
+  - Break-glass procedures documented by the operations team.

@@ -1,0 +1,23 @@
+id: ARGUS-0016
+title: Host firewall disabled or flushed
+description: >
+  A command disables the host firewall or flushes its rules. Attackers disable
+  firewalls to expose services, permit egress or remove a barrier to lateral
+  movement.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: firewall_disabled
+  condition: selection
+group_by: [user]
+tags:
+  - attack.defense_evasion
+  - attack.t1562
+  - attack.t1562.004
+falsepositives:
+  - A documented network change that temporarily relaxes host filtering.
+  - Container or VM provisioning that resets firewall state.
+  - Emergency troubleshooting performed by an administrator.

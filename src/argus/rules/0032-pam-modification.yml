@@ -1,0 +1,24 @@
+id: ARGUS-0032
+title: PAM authentication configuration modified
+description: >
+  A command modifies /etc/pam.d, runs pam-auth-update or changes password
+  quality policy. Modifying PAM can create a universal authentication backdoor
+  or weaken authentication for every service that uses it.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: pam_change
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.defense_evasion
+  - attack.credential_access
+  - attack.t1556
+falsepositives:
+  - Approved authentication stack changes or MFA rollout.
+  - Package installation of a PAM module.
+  - Configuration management enforcing password policy.

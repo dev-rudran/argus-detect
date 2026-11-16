@@ -1,0 +1,35 @@
+Nov  3 08:00:01 server01 sshd[1001]: Accepted publickey for deploy from 10.0.0.12 port 55022 ssh2: ED25519 SHA256:rL0nQ0m8cY6m3vXh0nJ8kP4d2sW1aQ7uT9bE5fG6hI0
+Nov  3 08:00:01 server01 sshd[1001]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)
+Nov  3 08:02:14 server01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/systemctl status nginx
+Nov  3 08:15:01 server01 CRON[1120]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)
+Nov  3 09:00:07 server01 sshd[1201]: Accepted publickey for alice from 10.0.0.31 port 49812 ssh2: RSA SHA256:H8sK2mN4pQ6rS8tU0vW2xY4zA6bC8dE0fG2hI4jK6lM
+Nov  3 09:00:07 server01 sshd[1201]: pam_unix(sshd:session): session opened for user alice(uid=1001) by (uid=0)
+Nov  3 09:05:22 server01 sudo: alice : TTY=pts/1 ; PWD=/home/alice ; USER=root ; COMMAND=/usr/bin/tail -n 50 /var/log/nginx/access.log
+Nov  3 10:00:01 server01 CRON[1301]: (root) CMD (/usr/sbin/logrotate /etc/logrotate.conf)
+Nov  3 16:02:44 server01 sshd[1201]: pam_unix(sshd:session): session closed for user alice
+Nov  3 16:03:01 server01 sshd[1001]: pam_unix(sshd:session): session closed for user deploy
+Nov  4 08:00:02 server01 sshd[1401]: Accepted publickey for deploy from 10.0.0.12 port 55030 ssh2: ED25519 SHA256:rL0nQ0m8cY6m3vXh0nJ8kP4d2sW1aQ7uT9bE5fG6hI0
+Nov  4 08:00:02 server01 sshd[1401]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)
+Nov  4 08:01:11 server01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/apt-get update
+Nov  4 08:05:39 server01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/systemctl restart nginx
+Nov  4 09:30:12 server01 sshd[1502]: Failed password for alice from 10.0.0.31 port 49990 ssh2
+Nov  4 09:30:30 server01 sshd[1502]: Accepted password for alice from 10.0.0.31 port 49990 ssh2
+Nov  4 09:30:30 server01 sshd[1502]: pam_unix(sshd:session): session opened for user alice(uid=1001) by (uid=0)
+Nov  4 09:55:04 server01 sshd[1520]: Invalid user test from 10.0.0.99 port 43122
+Nov  4 09:55:04 server01 sshd[1520]: Failed password for invalid user test from 10.0.0.99 port 43122 ssh2
+Nov  4 10:12:33 server01 sudo: alice : TTY=pts/1 ; PWD=/home/alice ; USER=root ; COMMAND=/bin/systemctl status nginx
+Nov  4 11:05:01 server01 CRON[1601]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)
+Nov  4 16:04:12 server01 sshd[1502]: pam_unix(sshd:session): session closed for user alice
+Nov  4 16:05:09 server01 sshd[1401]: pam_unix(sshd:session): session closed for user deploy
+Nov  4 18:00:01 server01 CRON[1701]: (root) CMD (/usr/local/bin/backup.sh --quiet)
+Nov  5 08:00:03 server01 sshd[1801]: Accepted publickey for deploy from 10.0.0.12 port 55044 ssh2: ED25519 SHA256:rL0nQ0m8cY6m3vXh0nJ8kP4d2sW1aQ7uT9bE5fG6hI0
+Nov  5 08:00:03 server01 sshd[1801]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)
+Nov  5 08:10:18 server01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/journalctl -u nginx --since yesterday
+Nov  5 08:20:44 server01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/ls -l /var/log
+Nov  5 09:00:01 server01 CRON[1901]: (root) CMD (cd / && run-parts --report /etc/cron.hourly)
+Nov  5 15:30:22 server01 sshd[1801]: pam_unix(sshd:session): session closed for user deploy
+Nov  6 08:00:01 server01 sshd[2001]: Accepted publickey for deploy from 10.0.0.12 port 55058 ssh2: ED25519 SHA256:rL0nQ0m8cY6m3vXh0nJ8kP4d2sW1aQ7uT9bE5fG6hI0
+Nov  6 08:00:01 server01 sshd[2001]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)
+Nov  6 08:04:02 server01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/systemctl status nginx
+Nov  6 10:00:01 server01 CRON[2101]: (root) CMD (/usr/sbin/logrotate /etc/logrotate.conf)
+Nov  6 17:30:11 server01 sshd[2001]: pam_unix(sshd:session): session closed for user deploy

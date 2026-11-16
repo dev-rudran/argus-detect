@@ -1,0 +1,24 @@
+id: ARGUS-0033
+title: Shell history or data integrity tampering
+description: >
+  A command clears shell history, unsets HISTFILE or removes .bash_history.
+  Attackers alter command history and related records to destroy evidence of
+  executed commands and to manipulate the integrity of investigative data.
+severity: medium
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: history_cleared
+  condition: selection
+group_by: [user]
+tags:
+  - attack.defense_evasion
+  - attack.impact
+  - attack.t1070.003
+  - attack.t1565
+falsepositives:
+  - Privacy cleanup scripts that clear shell history by design.
+  - A user troubleshooting their own shell environment.
+  - Configuration that disables history on shared service accounts.

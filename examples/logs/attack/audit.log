@@ -1,0 +1,6 @@
+node=web01 type=SYSCALL msg=audit(1794279720.100:9001): arch=c000003e syscall=87 success=yes exit=0 a0=7f3c2e1a a1=0 a2=0 items=2 ppid=2199 pid=2611 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 comm="truncate" exe="/usr/bin/truncate" key="log_tamper"
+node=web01 type=PATH msg=audit(1794279900.100:9002): item=0 name="/etc/shadow" inode=1832 dev=fd:01 mode=0100640 ouid=0 ogid=42 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0
+node=web01 type=SYSCALL msg=audit(1794280020.100:9003): arch=c000003e syscall=90 success=yes exit=0 a0=75b4 a1=1ff a2=0 items=1 ppid=2199 pid=2620 auid=1000 uid=0 gid=0 euid=0 comm="chmod" exe="/usr/bin/chmod" key="suid_change"
+node=web01 type=SYSCALL msg=audit(1794280080.100:9004): arch=c000003e syscall=313 success=yes exit=0 a0=7ffd1c a1=0 a2=0 items=1 ppid=2199 pid=2624 auid=1000 uid=0 gid=0 euid=0 comm="insmod" exe="/sbin/insmod" key="module_load"
+node=web01 type=PATH msg=audit(1794279780.100:9005): item=0 name="/etc/pam.d/common-auth" inode=9122 dev=fd:01 mode=0100644 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0
+node=web01 type=USER_ACCT msg=audit(1794278700.100:9006): pid=2501 uid=0 auid=1000 ses=2 subj=unconfined msg='op=PAM:accounting grantors=pam_unix acct="svc-backup" exe="/usr/sbin/useradd" hostname=? addr=? terminal=pts/0 res=success'

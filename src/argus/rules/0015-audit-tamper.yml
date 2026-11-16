@@ -1,0 +1,23 @@
+id: ARGUS-0015
+title: Audit daemon or audit rules tampered with
+description: >
+  The audit daemon is stopped, disabled or its configuration is modified. Once
+  audit is impaired, later privileged activity may not be recorded, which makes
+  this a high-value defense evasion step.
+severity: high
+logsource:
+  product: linux
+  service: auditd
+detection:
+  selection:
+    action: audit_tamper
+  condition: selection
+group_by: [user]
+tags:
+  - attack.defense_evasion
+  - attack.t1562
+  - attack.t1562.001
+falsepositives:
+  - A maintenance window that intentionally reloads audit rules.
+  - Configuration management restarting auditd.
+  - Troubleshooting while audit is temporarily disabled under change control.

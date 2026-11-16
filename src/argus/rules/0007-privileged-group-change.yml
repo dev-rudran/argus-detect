@@ -1,0 +1,24 @@
+id: ARGUS-0007
+title: Privileged group membership changed
+description: >
+  An account was added to a privileged local group such as sudo, wheel, docker
+  or disk. Membership in these groups is effectively root-equivalent on most
+  Linux hosts.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: group_member_added
+    group|re: '^(?:sudo|wheel|adm|admin|docker|lxd|disk|shadow|root)$'
+  condition: selection
+group_by: [user, group]
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1098
+falsepositives:
+  - Legitimate privilege grants handled through an approved change.
+  - Configuration management adding an operator to sudo.
+  - Container hosts where docker group access is a documented workflow.

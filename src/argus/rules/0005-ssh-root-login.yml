@@ -1,0 +1,26 @@
+id: ARGUS-0005
+title: Direct SSH login as root
+description: >
+  A successful SSH login to the root account. Direct root SSH access bypasses
+  individual accountability and is prohibited in most hardened environments.
+severity: high
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    action: ssh_auth_success
+    user: root
+  condition: selection
+group_by: [src_ip]
+tags:
+  - attack.initial_access
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1078
+  - attack.t1021
+  - attack.t1021.004
+falsepositives:
+  - Break-glass access explicitly permitted by policy.
+  - Legacy hosts that only permit root SSH and are documented exceptions.
+  - Configuration management that has not migrated to named accounts.

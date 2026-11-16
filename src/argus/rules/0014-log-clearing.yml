@@ -1,0 +1,22 @@
+id: ARGUS-0014
+title: System log clearing or truncation
+description: >
+  A command deletes, truncates or vacuums system logs. This is a direct attempt
+  to remove evidence of intrusion and usually follows other malicious activity.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: log_cleared
+  condition: selection
+group_by: [user]
+tags:
+  - attack.defense_evasion
+  - attack.t1070
+  - attack.t1070.002
+falsepositives:
+  - Approved log retention maintenance performed by operations.
+  - Disk-pressure automation that truncates logs unexpectedly.
+  - A documented incident response step that preserves copies first.

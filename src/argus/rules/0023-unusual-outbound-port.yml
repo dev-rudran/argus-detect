@@ -1,0 +1,44 @@
+id: ARGUS-0023
+title: Outbound connection to an unusual port
+description: >
+  A host initiates a network connection to a public address on a port outside
+  the common web, mail, DNS and database set. Non-standard ports are often used
+  for reverse shells, C2 and tunneled traffic.
+severity: medium
+logsource:
+  product: linux
+  service: network
+detection:
+  selection:
+    action: network_connection
+    dest_scope: public
+  filter:
+    dest_port:
+      - 20
+      - 21
+      - 22
+      - 25
+      - 53
+      - 80
+      - 110
+      - 123
+      - 143
+      - 443
+      - 465
+      - 587
+      - 993
+      - 995
+      - 3306
+      - 5432
+      - 6379
+      - 8080
+      - 8443
+  condition: selection and not filter
+group_by: [src_ip, dest_ip, dest_port]
+tags:
+  - attack.command_and_control
+  - attack.t1571
+falsepositives:
+  - Legitimate applications using vendor-specific ports.
+  - Game, voice or video traffic outside the standard set.
+  - Temporary test services on high ports.

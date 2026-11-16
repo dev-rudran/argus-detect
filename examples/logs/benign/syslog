@@ -1,0 +1,24 @@
+Nov  3 03:00:01 server01 kernel: [    0.000000] Linux version 6.8.0-45-generic (buildd@lcy02-amd64-045) (gcc 13.2.0)
+Nov  3 03:00:03 server01 systemd[1]: Started Journal Service.
+Nov  3 03:00:04 server01 systemd[1]: Started nginx.service.
+Nov  3 03:00:05 server01 systemd[1]: Started OpenBSD Secure Shell server.
+Nov  3 03:00:06 server01 systemd-logind[812]: New seat seat0.
+Nov  3 03:00:08 server01 kernel: [    2.334512] EXT4-fs (sda1): mounted filesystem with ordered data mode.
+Nov  3 06:25:01 server01 CRON[1101]: (root) CMD (/usr/bin/find /tmp -type f -atime +7 -delete)
+Nov  3 12:00:01 server01 systemd[1]: Stopped nginx.service.
+Nov  3 12:00:02 server01 systemd[1]: Started nginx.service.
+Nov  4 03:00:01 server01 systemd[1]: Started Daily apt download activities.
+Nov  4 03:02:11 server01 systemd[1]: Started Daily apt upgrade and clean activities.
+Nov  4 06:25:01 server01 CRON[1450]: (root) CMD (/usr/bin/find /tmp -type f -atime +7 -delete)
+Nov  4 12:00:01 server01 systemd[1]: Stopped nginx.service.
+Nov  4 12:00:02 server01 systemd[1]: Started nginx.service.
+Nov  5 03:00:01 server01 systemd[1]: Started Daily apt download activities.
+Nov  5 03:02:19 server01 systemd[1]: Started Daily apt upgrade and clean activities.
+Nov  5 06:25:01 server01 CRON[1750]: (root) CMD (/usr/bin/find /tmp -type f -atime +7 -delete)
+Nov  5 09:14:22 server01 systemd-logind[812]: New session 7 of user deploy.
+Nov  5 12:00:01 server01 systemd[1]: Stopped nginx.service.
+Nov  5 12:00:02 server01 systemd[1]: Started nginx.service.
+Nov  6 03:00:01 server01 systemd[1]: Started Daily apt download activities.
+Nov  6 06:25:01 server01 CRON[2050]: (root) CMD (/usr/bin/find /tmp -type f -atime +7 -delete)
+Nov  6 12:00:01 server01 systemd[1]: Stopped nginx.service.
+Nov  6 12:00:02 server01 systemd[1]: Started nginx.service.

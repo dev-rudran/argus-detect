@@ -1,0 +1,26 @@
+id: ARGUS-0026
+title: Kernel module loaded
+description: >
+  A privileged command loads a kernel module with insmod or modprobe. Unapproved
+  modules can hide processes and files, subvert security controls or persist a
+  rootkit across reboots.
+severity: medium
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: module_load
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.defense_evasion
+  - attack.t1547
+  - attack.t1547.006
+  - attack.t1014
+falsepositives:
+  - Legitimate driver or filesystem module installation.
+  - Virtualization and container host maintenance.
+  - Hardware enablement performed by an administrator.

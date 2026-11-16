@@ -1,0 +1,27 @@
+id: ARGUS-0024
+title: Network service discovery from one host
+description: >
+  One source contacts at least fifteen distinct destination ports within two
+  minutes. This fan-out pattern is characteristic of port scanning and service
+  enumeration.
+severity: medium
+logsource:
+  product: linux
+  service: network
+detection:
+  selection:
+    action: network_connection
+  condition: selection
+timeframe: 2m
+group_by: [src_ip]
+threshold:
+  count: 15
+  op: gte
+  distinct: [dest_port]
+tags:
+  - attack.discovery
+  - attack.t1046
+falsepositives:
+  - Vulnerability scanners and asset inventory tools.
+  - Monitoring systems that probe many services on one host.
+  - A load balancer health checker with a broad port list.

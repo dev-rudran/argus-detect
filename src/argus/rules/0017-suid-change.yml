@@ -1,0 +1,23 @@
+id: ARGUS-0017
+title: SUID or SGID bit set on a file
+description: >
+  A privileged command sets a setuid or setgid bit, or grants file capabilities.
+  SUID binaries are a classic local privilege escalation and backdoor mechanism.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: suid_change
+  condition: selection
+group_by: [user]
+tags:
+  - attack.defense_evasion
+  - attack.privilege_escalation
+  - attack.t1222
+  - attack.t1222.002
+falsepositives:
+  - Package installation or upgrade restoring expected SUID binaries.
+  - An approved administrative task that sets a capability.
+  - Legacy applications whose installer uses SUID helpers.

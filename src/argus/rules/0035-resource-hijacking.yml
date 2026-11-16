@@ -1,0 +1,23 @@
+id: ARGUS-0035
+title: Resource hijacking process started
+description: >
+  A process associated with cryptocurrency mining or known malicious resource
+  hijacking families started on the host. Unauthorized mining consumes capacity
+  and indicates the host is under attacker control.
+severity: high
+logsource:
+  product: linux
+  service: process
+detection:
+  selection:
+    action: process_start
+    process|re: '(?i)(?:^|[/\s])(?:xmrig|minerd|cpuminer|kdevtmpfsi|kinsing)(?:\s|$)'
+  condition: selection
+group_by: [host, process]
+tags:
+  - attack.impact
+  - attack.t1496
+falsepositives:
+  - An authorized cryptomining workload on a dedicated host.
+  - Security research or malware sandbox activity.
+  - A process name collision with an unrelated internal tool.

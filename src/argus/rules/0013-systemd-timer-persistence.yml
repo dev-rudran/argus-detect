@@ -1,0 +1,24 @@
+id: ARGUS-0013
+title: Systemd timer persistence
+description: >
+  A systemd timer was enabled or written to disk. Timers are the systemd
+  equivalent of cron and are used by attackers to schedule recurring payloads
+  while blending into normal service management.
+severity: medium
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection:
+    action: systemd_timer_persistence
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053
+  - attack.t1053.006
+falsepositives:
+  - Legitimate package timers such as log rotation or certificate renewal.
+  - Administrators enabling a documented maintenance timer.
+  - Configuration management that deploys timer units.

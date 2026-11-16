@@ -1,0 +1,24 @@
+id: ARGUS-0022
+title: Large outbound HTTP transfer
+description: >
+  A single HTTP request sends at least 50 MiB from an internal host to a public
+  destination. Large egress transfers to internet hosts can indicate data
+  exfiltration and warrant immediate validation.
+severity: high
+logsource:
+  product: nginx
+  service: http
+detection:
+  selection:
+    action: http_request
+    dest_scope: public
+    bytes_out|gte: 50000000
+  condition: selection
+group_by: [src_ip, dest_host]
+tags:
+  - attack.exfiltration
+  - attack.t1041
+falsepositives:
+  - Authorized uploads to cloud storage, backup or file-sharing services.
+  - Software distribution or artifact publishing from a build host.
+  - Large API responses incorrectly logged as request bytes.

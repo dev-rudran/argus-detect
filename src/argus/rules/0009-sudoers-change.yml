@@ -1,0 +1,24 @@
+id: ARGUS-0009
+title: Sudoers configuration modified
+description: >
+  A command references sudoers configuration or invokes visudo. Unauthorized
+  sudoers changes can grant durable root access while appearing to be normal
+  administrative activity.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: sudoers_change
+  condition: selection
+group_by: [user]
+tags:
+  - attack.privilege_escalation
+  - attack.persistence
+  - attack.t1548
+  - attack.t1548.003
+falsepositives:
+  - Approved administrative changes to sudo policy.
+  - Configuration management enforcing a managed sudoers drop-in.
+  - Security review running visudo -c to validate syntax.

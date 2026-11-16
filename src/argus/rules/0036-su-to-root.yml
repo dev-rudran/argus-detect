@@ -1,0 +1,25 @@
+id: ARGUS-0036
+title: Interactive su to root
+description: >
+  A successful su session to the root account. While su is a legitimate tool,
+  interactive root shells obscure accountability and are often disabled in
+  favor of sudo on hardened hosts.
+severity: low
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: su_success
+    target_user: root
+  condition: selection
+group_by: [user]
+tags:
+  - attack.privilege_escalation
+  - attack.defense_evasion
+  - attack.t1548
+  - attack.t1548.003
+falsepositives:
+  - Break-glass administration using the root password.
+  - Legacy runbooks that still require su.
+  - Rescue mode or single-user recovery procedures.

@@ -1,0 +1,22 @@
+id: ARGUS-0029
+title: System shutdown or reboot initiated
+description: >
+  A shutdown, reboot, halt or poweroff was initiated through a privileged
+  command or login manager. Unexpected restarts can disrupt monitoring and may
+  be used to interrupt investigations or apply destructive changes.
+severity: low
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection:
+    action: system_shutdown
+  condition: selection
+group_by: [host]
+tags:
+  - attack.impact
+  - attack.t1529
+falsepositives:
+  - Scheduled maintenance and patch cycles.
+  - Autoscaling or orchestration-driven reboots.
+  - An administrator rebooting after a kernel update.

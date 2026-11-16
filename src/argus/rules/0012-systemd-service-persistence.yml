@@ -1,0 +1,24 @@
+id: ARGUS-0012
+title: Systemd service persistence
+description: >
+  A new or modified systemd service was enabled or installed through a
+  privileged command. Systemd units provide reboot-surviving execution and are
+  frequently used for long-term persistence.
+severity: high
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection:
+    action: systemd_persistence
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1543
+  - attack.t1543.002
+falsepositives:
+  - Administrators enabling a legitimate service.
+  - Package post-install scripts that enable their own unit.
+  - Configuration management converging service state.

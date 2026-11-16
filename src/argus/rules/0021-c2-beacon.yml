@@ -1,0 +1,30 @@
+id: ARGUS-0021
+title: Periodic C2 beacon pattern over HTTP
+description: >
+  Repeated small HTTP POST requests from one host to the same public host and
+  path within ten minutes. Regular low-volume callbacks to one endpoint are a
+  common command-and-control pattern in web-facing logs.
+severity: high
+logsource:
+  product: nginx
+  service: http
+detection:
+  selection:
+    action: http_request
+    method: POST
+    dest_scope: public
+    bytes_out|lt: 200000
+  condition: selection
+timeframe: 10m
+group_by: [src_ip, dest_host, path]
+threshold:
+  count: 6
+  op: gte
+tags:
+  - attack.command_and_control
+  - attack.t1071
+  - attack.t1071.001
+falsepositives:
+  - Legitimate telemetry or analytics agents that POST on a fixed interval.
+  - Web applications with frequent small write requests to one endpoint.
+  - Health checks or synthetic monitoring using POST.

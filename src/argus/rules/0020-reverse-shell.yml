@@ -1,0 +1,24 @@
+id: ARGUS-0020
+title: Reverse shell command executed
+description: >
+  A command contains a reverse shell primitive using /dev/tcp, netcat exec,
+  socat exec, an interactive shell redirected to a socket, or an inline
+  interpreter socket. This is a strong indicator of hands-on-keyboard activity.
+severity: critical
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: reverse_shell
+  condition: selection
+group_by: [user]
+tags:
+  - attack.execution
+  - attack.command_and_control
+  - attack.t1059
+  - attack.t1059.004
+falsepositives:
+  - Authorized penetration tests or red team exercises.
+  - Troubleshooting with netcat in a lab environment.
+  - An application installer that briefly uses a socket shell.

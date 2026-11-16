@@ -1,0 +1,27 @@
+id: ARGUS-0002
+title: Distributed SSH brute force against one account
+description: >
+  An elevated volume of SSH authentication failures against the same account
+  across sources. A distributed attack spreads attempts to stay under per-IP
+  thresholds while concentrating on one credential pair.
+severity: high
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    action: ssh_auth_failed
+  condition: selection
+timeframe: 5m
+group_by: [user]
+threshold:
+  count: 10
+  op: gte
+tags:
+  - attack.credential_access
+  - attack.t1110
+  - attack.t1110.001
+falsepositives:
+  - Shared service accounts used by many hosts or automation agents.
+  - A load balancer or NAT that aggregates unrelated users behind one account.
+  - Account lockout churn caused by a misconfigured client.

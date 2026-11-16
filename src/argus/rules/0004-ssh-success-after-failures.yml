@@ -1,0 +1,32 @@
+id: ARGUS-0004
+title: SSH login succeeds after repeated failures
+description: >
+  A successful SSH authentication from an address that has just produced at
+  least three failures. This is the decisive pivot from brute force or password
+  spraying to an established session.
+severity: critical
+logsource:
+  product: linux
+  service: sshd
+detection:
+  failures:
+    action: ssh_auth_failed
+  success:
+    action: ssh_auth_success
+  condition: failures or success
+sequence:
+  first: failures
+  then: success
+  min_first: 3
+  within: 10m
+  group_by: [src_ip]
+tags:
+  - attack.initial_access
+  - attack.t1078
+  - attack.t1110.001
+  - attack.t1021
+  - attack.t1021.004
+falsepositives:
+  - A user who mistypes a password several times and then succeeds.
+  - A service that rotates credentials and retries after failures.
+  - An authorized penetration test replaying credential attacks.

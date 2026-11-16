@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">argus detection engine</title>
+  <desc id="desc">A dark banner with the argus wordmark and the tagline streaming detection for Linux logs</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08111f"/>
+      <stop offset="0.55" stop-color="#0d1b2f"/>
+      <stop offset="1" stop-color="#12263f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e3a5f" stroke-width="1" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="300" fill="url(#bg)"/>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+  <circle cx="1075" cy="70" r="150" fill="none" stroke="#1e4d73" stroke-width="1" opacity="0.5"/>
+  <circle cx="1075" cy="70" r="105" fill="none" stroke="#2dd4bf" stroke-width="1" opacity="0.25"/>
+  <circle cx="1075" cy="70" r="60" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.2"/>
+  <g transform="translate(72 92)">
+    <path d="M0 58 C28 20, 72 8, 116 8 C160 8, 204 20, 232 58 C204 96, 160 108, 116 108 C72 108, 28 96, 0 58 Z" fill="none" stroke="url(#accent)" stroke-width="3"/>
+    <circle cx="116" cy="58" r="24" fill="none" stroke="url(#accent)" stroke-width="3"/>
+    <circle cx="116" cy="58" r="8" fill="#2dd4bf"/>
+  </g>
+  <g transform="translate(352 112)">
+    <text x="0" y="58" font-family="'DejaVu Sans', 'Segoe UI', sans-serif" font-size="76" font-weight="700" fill="#e6f1ff" letter-spacing="-2">argus</text>
+    <text x="2" y="98" font-family="'DejaVu Sans Mono', 'Consolas', monospace" font-size="17" fill="#8fb3d1" letter-spacing="1.5">STREAMING DETECTION FOR LINUX LOGS</text>
+  </g>
+  <g transform="translate(72 250)">
+    <rect x="0" y="0" width="196" height="2" fill="url(#accent)"/>
+    <text x="0" y="30" font-family="'DejaVu Sans Mono', 'Consolas', monospace" font-size="14" fill="#5f86a8">36 RULES / 48 TECHNIQUES / 4 REPORT FORMATS</text>
+  </g>
+  <g transform="translate(1060 250)">
+    <text x="0" y="30" font-family="'DejaVu Sans Mono', 'Consolas', monospace" font-size="14" fill="#5f86a8" text-anchor="end">MIT / v0.1.0</text>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+id: ARGUS-0028
+title: Security service stopped
+description: >
+  A security-relevant systemd service such as sshd, auditd, the firewall,
+  AppArmor or fail2ban was stopped. Disabling protective services is a common
+  precursor to further intrusion activity.
+severity: high
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection:
+    action: service_stopped
+    unit|re: '^(?:sshd|auditd|firewalld|ufw|nftables|apparmor|fail2ban|systemd-journald)\.service$'
+  condition: selection
+group_by: [host, unit]
+tags:
+  - attack.impact
+  - attack.defense_evasion
+  - attack.t1489
+  - attack.t1562.001
+falsepositives:
+  - Approved maintenance restarting a security service.
+  - Package upgrade that stops the service during replacement.
+  - Emergency troubleshooting under change control.

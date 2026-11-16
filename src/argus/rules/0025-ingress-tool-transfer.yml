@@ -1,0 +1,24 @@
+id: ARGUS-0025
+title: Suspicious tool download over HTTP
+description: >
+  A host requests a script, executable, archive or binary from a public HTTP
+  endpoint. Attackers routinely stage tooling by downloading a payload inside
+  the environment.
+severity: medium
+logsource:
+  product: nginx
+  service: http
+detection:
+  selection:
+    action: http_request
+    dest_scope: public
+    path|re: '(?i)\.(?:sh|py|elf|bin|pl|tgz|tar\.gz|zip)$'
+  condition: selection
+group_by: [src_ip, dest_host]
+tags:
+  - attack.command_and_control
+  - attack.t1105
+falsepositives:
+  - Package managers and administrators downloading legitimate installers.
+  - Software update services that distribute scripts or archives.
+  - Developer tooling fetching release artifacts.

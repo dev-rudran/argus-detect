@@ -1,0 +1,24 @@
+id: ARGUS-0027
+title: Package installation through a privileged command
+description: >
+  A package manager installs software with elevated privilege. Attackers install
+  tooling or trojanized packages to support collection, tunneling or persistence.
+  The rule is intentionally medium severity because package installs are common
+  in normal operations.
+severity: medium
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: package_install
+  condition: selection
+group_by: [user]
+tags:
+  - attack.initial_access
+  - attack.t1195
+  - attack.t1195.002
+falsepositives:
+  - Routine package installation on golden images and build hosts.
+  - Configuration management installing approved packages.
+  - Administrators installing diagnostic tools during an incident.

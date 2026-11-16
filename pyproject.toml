@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "argus-detect"
+version = "0.1.0"
+description = "Streaming detection engineering engine for Linux logs with Sigma-inspired rules, correlation, and ATT&CK mapping"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Rudra Tushir", email = "rudraking2404@gmail.com" }]
+keywords = ["security", "detection-engineering", "soc", "sigma", "linux", "logs", "mitre-attack"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: System :: Logging",
+]
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.4",
+    "bandit>=1.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/dev-rudran/argus-detect"
+Repository = "https://github.com/dev-rudran/argus-detect"
+Issues = "https://github.com/dev-rudran/argus-detect/issues"
+
+[project.scripts]
+argus = "argus.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+argus = ["rules/*.yml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = ["error::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["argus"]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF", "C4"]
+ignore = [
+    "E501",  # line length is enforced by the formatter where practical
+    "RUF001", # ambiguous unicode in strings is intentional in log fixtures
+    "RUF002",
+    "RUF003",
+    "B905",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"src/argus/rules/__init__.py" = []
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv", "build", "dist"]
+skips = ["B404", "B603"]

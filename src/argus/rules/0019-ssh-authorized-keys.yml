@@ -1,0 +1,24 @@
+id: ARGUS-0019
+title: SSH authorized_keys modified
+description: >
+  A command writes to an SSH authorized_keys file. Adding a key creates
+  persistent, passwordless access that survives password resets and account
+  reviews.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: ssh_key_added
+  condition: selection
+group_by: [user, host]
+tags:
+  - attack.persistence
+  - attack.privilege_escalation
+  - attack.t1098
+  - attack.t1098.004
+falsepositives:
+  - Approved key rotation or onboarding automation.
+  - Configuration management distributing authorized keys.
+  - A user adding a personal key under an accepted policy.

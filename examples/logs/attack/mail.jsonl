@@ -1,0 +1,5 @@
+{"timestamp":"2026-11-10T03:20:05.100Z","host":"mail01","user":"deploy","action":"email_access","mailbox":"INBOX","messages":42,"bytes_in":1184200,"src_ip":"10.0.0.15"}
+{"timestamp":"2026-11-10T03:20:35.200Z","host":"mail01","user":"deploy","action":"email_access","mailbox":"INBOX","messages":37,"bytes_in":992211,"src_ip":"10.0.0.15"}
+{"timestamp":"2026-11-10T03:21:05.300Z","host":"mail01","user":"deploy","action":"email_access","mailbox":"Sent","messages":28,"bytes_in":684002,"src_ip":"10.0.0.15"}
+{"timestamp":"2026-11-10T03:22:10.400Z","host":"mail01","user":"deploy","action":"email_access","mailbox":"Archive","messages":91,"bytes_in":2841120,"src_ip":"10.0.0.15"}
+{"timestamp":"2026-11-10T03:23:15.500Z","host":"mail01","user":"deploy","action":"email_access","mailbox":"Archive","messages":64,"bytes_in":1720044,"src_ip":"10.0.0.15"}

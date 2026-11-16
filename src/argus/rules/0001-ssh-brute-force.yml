@@ -1,0 +1,27 @@
+id: ARGUS-0001
+title: SSH brute force from a single source
+description: >
+  Multiple failed SSH authentication attempts from one source address within a
+  short window. This catches password guessing and scripted credential attacks
+  against a host.
+severity: high
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection:
+    action: ssh_auth_failed
+  condition: selection
+timeframe: 2m
+group_by: [src_ip]
+threshold:
+  count: 6
+  op: gte
+tags:
+  - attack.credential_access
+  - attack.t1110
+  - attack.t1110.001
+falsepositives:
+  - A user repeatedly mistyping a password, especially without key-based login.
+  - Automated deployment or monitoring clients with stale credentials.
+  - A NAT gateway where many users share one public address.

@@ -1,0 +1,22 @@
+id: ARGUS-0006
+title: New local user account created
+description: >
+  A local user account was created. Attackers add accounts for persistence, and
+  unexpected account creation is uncommon on stable production hosts.
+severity: medium
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: user_created
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.t1136
+  - attack.t1136.001
+falsepositives:
+  - Onboarding of a legitimate administrator or service account.
+  - Configuration management that provisions local accounts by design.
+  - Package installation that creates a dedicated service user.

@@ -1,0 +1,25 @@
+id: ARGUS-0034
+title: Bulk mailbox access
+description: >
+  One account accesses multiple mail items in a short window. High-volume
+  mailbox reads can indicate email collection after account compromise.
+severity: medium
+logsource:
+  product: mail
+  service: mailbox
+detection:
+  selection:
+    action: email_access
+  condition: selection
+timeframe: 5m
+group_by: [user]
+threshold:
+  count: 3
+  op: gte
+tags:
+  - attack.collection
+  - attack.t1114
+falsepositives:
+  - Mail clients synchronizing a large folder.
+  - Legal hold or eDiscovery export tooling.
+  - Migration jobs moving mailboxes between systems.

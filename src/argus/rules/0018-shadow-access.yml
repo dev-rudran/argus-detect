@@ -1,0 +1,23 @@
+id: ARGUS-0018
+title: Shadow password file accessed
+description: >
+  A process reads /etc/shadow or /etc/gshadow. Access to password hashes is a
+  direct credential dumping step and should be rare outside of authentication
+  and backup tooling.
+severity: critical
+logsource:
+  product: linux
+  service: auditd
+detection:
+  selection:
+    action: shadow_access
+  condition: selection
+group_by: [host]
+tags:
+  - attack.credential_access
+  - attack.t1003
+  - attack.t1552.001
+falsepositives:
+  - Backup software reading password databases.
+  - Password management or auditing tools run under change control.
+  - An administrator troubleshooting authentication with an approved process.

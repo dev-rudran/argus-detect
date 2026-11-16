@@ -1,0 +1,8 @@
+2026-11-10T02:57:22.330000+00:00 web01 systemd[1]: Started argus-updater.service.
+2026-11-10T02:58:05.440000+00:00 web01 systemd[1]: Started argus-sync.timer.
+2026-11-10T02:59:02.551000+00:00 web01 systemd[1]: Stopped auditd.service.
+2026-11-10T03:04:10.010000+00:00 web01 kernel: usb 1-2: new high-speed USB device number 4 using xhci_hcd
+2026-11-10T03:04:10.210000+00:00 web01 kernel: usb-storage 1-2:1.0: USB Mass Storage device detected
+2026-11-10T03:04:10.410000+00:00 web01 kernel: scsi host4: usb-storage 1-2:1.0
+2026-11-10T03:08:06.440000+00:00 web01 kernel: module verification failed: signature and/or required key missing - tainting kernel
+2026-11-10T03:55:01.770000+00:00 web01 systemd-logind[812]: System is rebooting.

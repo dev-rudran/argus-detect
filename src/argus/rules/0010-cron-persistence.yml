@@ -1,0 +1,24 @@
+id: ARGUS-0010
+title: Cron persistence installed
+description: >
+  A crontab or system cron directory was modified through a privileged command.
+  Scheduled jobs are a common persistence mechanism because they survive
+  reboots and execute without an active login.
+severity: high
+logsource:
+  product: linux
+  service: auth
+detection:
+  selection:
+    action: cron_persistence
+  condition: selection
+group_by: [user]
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053
+  - attack.t1053.003
+falsepositives:
+  - Administrators installing an approved scheduled job.
+  - Configuration management that manages cron files continuously.
+  - Backup or monitoring agents whose installer writes cron entries.
