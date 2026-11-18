@@ -3,6 +3,14 @@
 All notable changes are documented here. The format follows Keep a Changelog,
 and the project uses semantic versioning.
 
+## Unreleased
+
+### Added
+
+- SARIF 2.1.0 report output (`--format sarif`), suitable for GitHub code
+  scanning and other SARIF viewers, with deduplicated rule metadata, ATT&CK
+  tags, stable fingerprints and bounded evidence locations.
+
 ## [0.1.0] - 2026-11-15
 
 ### Added

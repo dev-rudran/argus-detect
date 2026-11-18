@@ -17,7 +17,7 @@ from argus.engine import Engine, ScanResult, SuppressionError, SuppressionSet
 from argus.ingest import IngestError, ParserStats, iter_events
 from argus.ingest.stream import VALID_TYPES
 from argus.models import Rule, Severity
-from argus.report import render_console, render_html, render_jsonl, render_markdown
+from argus.report import render_console, render_html, render_jsonl, render_markdown, render_sarif
 from argus.report.common import ScanContext
 from argus.report.html import render_attack_matrix_html
 from argus.rules.loader import (
@@ -48,7 +48,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     scan.add_argument(
         "--format",
-        choices=("console", "jsonl", "md", "html"),
+        choices=("console", "jsonl", "md", "html", "sarif"),
         default="console",
         help="report format (default: console)",
     )
@@ -227,6 +227,8 @@ def _scan(args: argparse.Namespace) -> int:
         rendered = render_jsonl(context)
     elif args.format == "md":
         rendered = render_markdown(context)
+    elif args.format == "sarif":
+        rendered = render_sarif(context)
     else:
         rendered = render_html(context)
 

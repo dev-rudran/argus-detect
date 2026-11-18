@@ -38,7 +38,8 @@ report writers.
   RFC 5424 syslog, JSON-lines, and Linux auditd records.
 - 36 bundled rules across 48 ATT&CK techniques, with sliding-window
   thresholds, distinct-value thresholds and two-stage sequences.
-- Console, JSON-lines, Markdown and fully standalone HTML reports.
+- Console, JSON-lines, Markdown, fully standalone HTML reports, and SARIF 2.1.0
+  for GitHub code scanning or any SARIF viewer.
 - Rule tooling: `list`, `show`, `lint` and `validate`, plus `explain` for the
   compiled semantics of a rule and `attack-matrix` for coverage.
 - Suppression windows that are useful during tuning without deleting the rule.
@@ -151,7 +152,7 @@ argus version                          print the version
 | Option | Description |
 |---|---|
 | `--rules DIR` | Use a custom rule directory instead of the bundled pack. |
-| `--format {console,jsonl,md,html}` | Report format. Default: `console`. |
+| `--format {console,jsonl,md,html,sarif}` | Report format. Default: `console`. |
 | `-o, --output FILE` | Write to a file instead of stdout. Parent directories are created. |
 | `--min-severity LEVEL` | Hide alerts below `informational`, `low`, `medium`, `high` or `critical`. |
 | `--since`, `--until` | UTC date or timestamp bounds. A date covers the whole UTC day. |
@@ -170,13 +171,39 @@ argus version                          print the version
 argus scan logs --format jsonl -o report.jsonl
 argus scan logs --format md    -o report.md
 argus scan logs --format html  -o report.html
+argus scan logs --format sarif -o argus.sarif
 argus attack-matrix --format html -o attack.html
 ```
 
 The HTML report is a single file with inline CSS and JavaScript. It loads no
 CDN assets, webfonts or external images, and escaped log content is rendered as
 text. The JSON-lines report contains one alert object per line; scan metadata is
-carried by the Markdown and HTML reports.
+carried by the Markdown and HTML reports. The SARIF report is a single 2.1.0
+document with one rule per loaded detection rule and one result per alert.
+
+### GitHub code scanning
+
+Upload the SARIF report from a workflow with the `security-events: write`
+permission:
+
+```yaml
+permissions:
+  contents: read
+  security-events: write
+
+steps:
+  - uses: actions/checkout@v4
+  - run: pip install .
+  - run: argus scan logs --format sarif -o argus.sarif
+  - uses: github/codeql-action/upload-sarif@v3
+    with:
+      sarif_file: argus.sarif
+```
+
+Results keep their argus rule id, ATT&CK tags and `security-severity`, so alerts
+appear in the code-scanning dashboard like any other SARIF producer. Evidence
+snippets are bounded to 190 characters and contain no fields beyond what the
+console report already prints.
 
 ### Exit codes
 
@@ -392,7 +419,7 @@ src/argus/
   models.py          Event, Alert, Rule and correlation models
   attack.py          ATT&CK catalogue and coverage
   ingest/            sshd, syslog, JSON-lines and auditd parsers
-  report/            console, JSON-lines, Markdown and HTML writers
+  report/            console, JSON-lines, Markdown, HTML and SARIF writers
   rules/             36 bundled YAML rules, loader, condition parser
 examples/logs/       benign and attack corpora
 tests/               unit and integration tests
